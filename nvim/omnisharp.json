@@ -1,0 +1,19 @@
+{
+    "RoslynExtensionsOptions": {
+        "enableAnalyzersSupport": true
+    },
+    "FormattingOptions": {
+        "enableEditorConfigSupport": true
+    },
+    "cake" : {
+        "enabled" : false
+    },
+        "script" : {
+        "enabled" : false
+     },
+    "excludeSearchPatterns": [
+        "Library/**/*",
+        "Temp/**/*",
+        "obj/**/*"
+    ]
+}
