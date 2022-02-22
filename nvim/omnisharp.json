@@ -3,7 +3,12 @@
         "enableAnalyzersSupport": true
     },
     "FormattingOptions": {
-        "enableEditorConfigSupport": true
+        "enableEditorConfigSupport": true,
+        "NewLine": "\n",
+        "UseTabs": false,
+        "OrganizeImports": true,
+        "IndentationSize": 4,
+        "TabSize": 4 
     },
     "cake" : {
         "enabled" : false
