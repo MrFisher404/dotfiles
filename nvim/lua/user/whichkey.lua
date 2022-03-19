@@ -80,10 +80,12 @@ local opts = {
 
 local mappings = {
   ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  ["c"] = { "<cmd>Bdelete<CR>", "Close" },
+  ["q"] = { "<cmd>q<CR>", "Quit" },
+  ["x"] = { "<cmd>Bdelete!<CR>", "Force Close" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  ["<space>"]  = { "<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor{previewer = false})<cr>", "Code Action" },
 
   a = {
     name = "Activate",
@@ -91,21 +93,29 @@ local mappings = {
     e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   },
 
+  e = {
+    name = "Error",
+    e = { "<cmd>TroubleToggle<CR>", "Toggle"},
+    r = { "<cmd>TroubleRefresh<CR>", "Refresh"},
+    j = { "<cmd>require('trouble').next({skip_groups = true, jump = true})<CR>", "Down"},
+    k = { "<cmd>require('trouble').previous({skip_groups = true, jump = true})<CR>", "Up"},
+    },
+
   f = {
     name = "Find",
     f = { "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", "File" },
     s = { "<cmd>Telescope live_grep theme=ivy<cr>", "String" },
     i = { "<cmd>Telescope lsp_implementations<cr>", "Implementation" },
-    u = { "<cmd>Telescope lsp_references<cr>", "Usages"},
+    u = { "<cmd>lua require('telescope.builtin').lsp_references({includeDeclaration = false})<cr>", "Usages"},
     d = { "<cmd>Telescope lsp_definitions<cr>", "Definitions" },
-    D = { "<cmd>Telescope lsp_diagnostics<cr>", "Diagnostics" },
+    D = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
     b = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Buffers" },
     n = { "<cmd>ZkNotes<cr>", "Notes"},
   },
 
   g = {
     name = "Git",
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+    g = { "<cmd>LazyGit<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -128,7 +138,7 @@ local mappings = {
 
   l = {
     name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+    a = { "<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor{previewer = false})<cr>", "Code Action" },
     d = {
       "<cmd>Telescope lsp_document_diagnostics<cr>",
       "Document Diagnostics",

@@ -60,10 +60,17 @@ return packer.startup(function(use)
   use "folke/which-key.nvim"
   use "mickael-menu/zk-nvim"
 
+  -- Testing&Debugging
+    use { "rcarriga/vim-ultest", requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
+
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
   use "gruvbox-community/gruvbox"
+  use "RRethy/nvim-base16"
+  use "eddyekofo94/gruvbox-flat.nvim"
+  use "sainnhe/gruvbox-material"
+  use "luisiacc/gruvbox-baby"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -84,6 +91,12 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
+  -- Debugging
+  use "mfussenegger/nvim-dap"
+  use "Pocco81/DAPInstall.nvim"
+
+  -- Diagnostics
+  use "folke/trouble.nvim"
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-file-browser.nvim"
@@ -94,6 +107,8 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "nvim-treesitter/playground"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
