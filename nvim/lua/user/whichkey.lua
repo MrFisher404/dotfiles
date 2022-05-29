@@ -85,7 +85,7 @@ local mappings = {
   ["x"] = { "<cmd>Bdelete!<CR>", "Force Close" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-  ["<space>"]  = { "<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor{previewer = false})<cr>", "Code Action" },
+  ["<space>"]  = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 
   a = {
     name = "Activate",
@@ -115,7 +115,7 @@ local mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>LazyGit<CR>", "Lazygit" },
+    g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },

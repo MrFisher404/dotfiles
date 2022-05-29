@@ -1,6 +1,7 @@
 local options = {
-  -- termguicolors = true,                    -- set term gui colors (most terminals support this)
+  termguicolors = true,                    -- set term gui colors (most terminals support this)
   backup = false,                          -- creates a backup file
+  background = "dark",                     -- as asked in everforest help
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
@@ -11,6 +12,7 @@ local options = {
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   hlsearch = true,                         -- highlight all matches on previous search pattern
   ignorecase = true,                       -- ignore case in search patterns
+  laststatus = 3,                           -- global status line
   mouse = "a",                             -- allow the mouse to be used in neovim
   number = true,                           -- set numbered lines
   numberwidth = 4,                         -- set number column width to 2 {default 4}
