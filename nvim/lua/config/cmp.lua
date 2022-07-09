@@ -41,7 +41,7 @@ function M.setup()
 
   cmp.setup {
     completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
-    experimental = { native_menu = false, ghost_text = false },
+    experimental = { native_menu = false, ghost_text = true },
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
@@ -70,7 +70,7 @@ function M.setup()
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-e>"] = cmp.mapping { i = cmp.mapping.close(), c = cmp.mapping.close() },
+      ["<C-s>"] = cmp.mapping { i = cmp.mapping.close(), c = cmp.mapping.close() },
       ["<CR>"] = cmp.mapping {
         i = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
         c = function(fallback)
@@ -131,7 +131,7 @@ function M.setup()
   -- Use buffer source for `/`
   cmp.setup.cmdline("/", {
     sources = {
-      { name = "buffer" },
+      { name = "buffer", max_item_count = 10 },
     },
   })
 

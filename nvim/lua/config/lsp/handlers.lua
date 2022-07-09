@@ -9,8 +9,8 @@ function M.setup()
       border = "rounded",
     },
     diagnostic = {
-      -- virtual_text = true,
-      virtual_text = { spacing = 4, prefix = "●" },
+      virtual_text = false,
+      --virtual_text = { spacing = 4, prefix = "●" },
       underline = true,
       update_in_insert = false,
       severity_sort = true,

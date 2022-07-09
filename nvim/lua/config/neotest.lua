@@ -12,6 +12,7 @@ function M.setup()
       require "neotest-plenary",
       require "neotest-vim-test" {
         ignore_file_types = { "python", "vim", "lua" },
+				allow_file_types = { "haskell", "elixir", "csharp", "cs"},
       },
     },
   }

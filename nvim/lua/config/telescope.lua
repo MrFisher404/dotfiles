@@ -58,6 +58,32 @@ function M.setup()
 
   telescope.setup {
     defaults = {
+    prompt_prefix = " ",
+    selection_caret = " ",
+    path_display = { "smart" },
+    entry_prefix = "  ",
+        initial_mode = "insert",
+        -- selection_strategy = "reset",
+        -- sorting_strategy = "descending",
+        layout_strategy = "horizontal",
+        layout_config = {
+              horizontal = {
+                    mirror = false,
+                  },
+              vertical = {
+                    mirror = false,
+                  },
+            },
+        -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+        -- file_ignore_patterns = {},
+        -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+        winblend = 0,
+        border = {},
+        borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+        color_devicons = true,
+        -- use_less = true,
+   	set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+
       buffer_previewer_maker = preview_maker,
       mappings = {
         i = {
@@ -92,6 +118,21 @@ function M.setup()
         },
       },
     },
+		extensions = {
+				file_browser = {
+					theme = "dropdown",
+					-- disables netrw and use telescope-file-browser in its place
+					hijack_netrw = true,
+					mappings = {
+						["i"] = {
+							-- your custom insert mode mappings
+						},
+						["n"] = {
+							-- your custom normal mode mappings
+						},
+					},
+				},
+			},
   }
 
   telescope.load_extension "fzf"

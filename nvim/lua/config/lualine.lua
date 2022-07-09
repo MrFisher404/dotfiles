@@ -54,7 +54,21 @@ local function lsp_client(msg)
   local supported_hovers = hovers.list_registered(buf_ft)
   vim.list_extend(buf_client_names, supported_hovers)
 
-  return "[" .. table.concat(buf_client_names, ", ") .. "]"
+  -- add code action
+  local code_actions = require "config.lsp.null-ls.code_actions"
+  local supported_code_actions = code_actions.list_registered(buf_ft)
+  vim.list_extend(buf_client_names, supported_code_actions)
+
+  local hash = {}
+  local client_names = {}
+  for _, v in ipairs(buf_client_names) do
+    if not hash[v] then
+      client_names[#client_names + 1] = v
+      hash[v] = true
+    end
+  end
+  table.sort(client_names)
+  return "[" .. table.concat(client_names, ", ") .. "]"
 end
 
 -------- use fidget.nvim ------
@@ -80,8 +94,10 @@ end
 --   return table.concat(status, "  ") .. " " .. spinners[frame + 1]
 -- end
 
+local icons = require "config.icons"
+
 function M.setup()
-  local gps = require "nvim-gps"
+  -- local gps = require "nvim-gps"
 
   require("lualine").setup {
     options = {
@@ -91,6 +107,7 @@ function M.setup()
       section_separators = { left = " ", right = "" },
       disabled_filetypes = {},
       always_divide_middle = true,
+      globalstatus = true,
     },
     sections = {
       lualine_a = { "mode" },
@@ -100,7 +117,12 @@ function M.setup()
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
-          symbols = { error = " ", warn = " ", info = " ", hint = " " },
+          symbols = {
+            error = icons.diagnostics.Error,
+            warn = icons.diagnostics.Warning,
+            info = icons.diagnostics.Information,
+            hint = icons.diagnostics.Hint,
+          },
           colored = false,
         },
       },
@@ -108,11 +130,11 @@ function M.setup()
         { separator },
         { lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },
         -- { lsp_progress },
-        {
-          gps.get_location,
-          cond = gps.is_available,
-          color = { fg = colors.green },
-        },
+        -- {
+        --   gps.get_location,
+        --   cond = gps.is_available,
+        --   color = { fg = colors.green },
+        -- },
       },
       lualine_x = { "filename", "encoding", "fileformat", "filetype" },
       lualine_y = { "progress" },

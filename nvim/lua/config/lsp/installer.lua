@@ -15,6 +15,15 @@ function M.setup(servers, options)
           opts = require("lua-dev").setup { lspconfig = opts }
         end
 
+
+        if server.name == "omnisharp" then
+          opts = require("lua-dev").setup { lspconfig = opts }
+        end
+
+
+        if server.name == "omnisharp" then
+            opts = vim.tbl_deep_extend("force", require("config.lsp.settings.omnisharp"), opts)
+        end
         -- https://github.com/williamboman/nvim-lsp-installer/wiki/Rust
         if server.name == "rust_analyzer" then
           require("rust-tools").setup {
